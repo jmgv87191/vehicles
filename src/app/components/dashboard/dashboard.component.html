@@ -1,0 +1,28 @@
+<form  (ngSubmit)="agregar()" [formGroup]="form" >
+    
+    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..."
+        (input)="onSelect($event)">
+
+        <datalist id="datalistOptions">
+            
+            @for (item of vehicles; track $index) {
+                <option > {{ item.id }} </option>
+            }
+        
+        </datalist>
+
+    <input formControlName="funcionarioId" class="form-control me-2" type="number" placeholder="funcionarioId" >
+    
+    <input formControlName="date" id="startDate" class="form-control" type="date" />
+
+
+        
+
+
+
+    <button class="btn btn-success" type="submit">Agregar</button>
+
+    
+
+</form>
+
