@@ -8,7 +8,7 @@ import { __values } from 'tslib';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule],
+  imports: [ReactiveFormsModule,FormsModule,CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'] 
 })
@@ -119,23 +119,20 @@ export class DashboardComponent implements OnInit  {
 
 
   agregar() {
-    // Verificar si el formulario es válido antes de proceder
     if (this.form.valid && this.vehicleReq) {
-      // Construir el objeto vehicleRes usando los valores del formulario y detallesRevision
       this.vehicleRes = {
         inventarioId: this.vehicleReq.id,
         funcionarioId: this.form.value.funcionarioId,
-        userId: 4343434,  // Puedes cambiar el userId por el correcto si lo necesitas
+        userId: 4343434,  
         fecha: this.form.value.date,
         detallerevision: this.detallesRevision.map((detalle) => ({
-          subcategoriaId: detalle.subcategoriaId,   // Asegurarse de que coincide con la interfaz
-          subcategoria: detalle.subcategoria,       // Agregar el campo que falta según tu interfaz
+          subcategoriaId: detalle.subcategoriaId,  
+          subcategoria: detalle.subcategoria,     
           estado: detalle.estado,  
-          observacion: "Observación por defecto" // Puedes ajustar esta observación según sea necesario
+          observacion: "Observación por defecto" 
         }))
       };
   
-      // Imprimir el resultado en la consola
       console.log('vehicleRes:', this.vehicleRes);
       
       // Aquí puedes llamar a un servicio para enviar los datos (si es necesario)
@@ -146,8 +143,9 @@ export class DashboardComponent implements OnInit  {
     }
   }
   
-  sumar(valor:number){
-    this.estado = this.estado + valor
+  sumar(valor: number, index: number) {
+    this.detallesRevision[index].estado += valor;
   }
+  
 
 }

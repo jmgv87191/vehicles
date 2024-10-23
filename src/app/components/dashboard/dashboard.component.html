@@ -1,45 +1,34 @@
-<form  (ngSubmit)="agregar()" [formGroup]="form" >
+<form (ngSubmit)="agregar()" [formGroup]="form">
+
+    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." (input)="onSelect($event)">
+    <datalist id="datalistOptions">
+      <option *ngFor="let item of vehicles" [value]="item.id"></option>
+    </datalist>
+  
+    <input formControlName="funcionarioId" class="form-control me-2" type="number" placeholder="funcionarioId">
     
-    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..."
-        (input)="onSelect($event)">
-
-        <datalist id="datalistOptions">
-            
-            @for (item of vehicles; track $index) {
-                <option > {{ item.id }} </option>
-            }
-        
-        </datalist>
-
-    <input formControlName="funcionarioId" class="form-control me-2" type="number" placeholder="funcionarioId" >
-    
-    <input formControlName="date" id="startDate" class="form-control" type="date" />
-
-
+    <input formControlName="date" id="startDate" class="form-control" type="date">
+  
     <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Hola</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            @for (item of detallesRevision; track $index) {
-                <tr>
-                    <td> {{ item.subcategoria }} </td>
-                    <td>  <button type="button" class="btn btn-success" (click)="sumar(1)" >+</button> </td>
-                </tr>
-            }
-
-        </tbody>
+      <thead>
+        <tr>
+          <th scope="col">Subcategoría</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of detallesRevision; let i = index">
+          <td>{{ item.subcategoria }}</td>
+          <td>{{ item.estado }}</td>
+          <td>
+            <button type="button" class="btn btn-success" (click)="sumar(1, i)">+</button>
+            <button type="button" class="btn btn-danger" (click)="sumar(-1, i)">-</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-
-
-
+  
     <button class="btn btn-success" type="submit">Agregar</button>
-
-    
-
-</form>
-
+  </form>
+  

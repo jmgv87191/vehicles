@@ -51,13 +51,13 @@ export interface vehicleResp {
     funcionarioId:   number;
     userId:          number;
     fecha:           string;
-    detallerevision: Detallerevision[];
+    detallerevision?: Detallerevision[];
 }
 
 export interface Detallerevision {
     subcategoriaId: number;
     subcategoria:   string;
-    estado:         number | null;
-    observacion:    null | string;
+    estado:         number ;
+    observacion:    string;
 }
 
