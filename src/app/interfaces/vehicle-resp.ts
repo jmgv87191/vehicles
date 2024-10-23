@@ -60,3 +60,4 @@ export interface Detallerevision {
     estado:         number | null;
     observacion:    null | string;
 }
+

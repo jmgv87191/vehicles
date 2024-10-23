@@ -16,7 +16,24 @@
     <input formControlName="date" id="startDate" class="form-control" type="date" />
 
 
-        
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Hola</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @for (item of detallesRevision; track $index) {
+                <tr>
+                    <td> {{ item.subcategoria }} </td>
+                    <td>  <button type="button" class="btn btn-success" (click)="sumar(1)" >+</button> </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
 
 
 
