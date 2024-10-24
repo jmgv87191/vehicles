@@ -4,11 +4,12 @@ import { Detallerevision, VehicleReq, vehicleResp, VehiclesReq } from '../../int
 import { CommonModule } from '@angular/common';
 import { FormGroup,Validators,FormBuilder,ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { __values } from 'tslib';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule,CommonModule],
+  imports: [ReactiveFormsModule,FormsModule,CommonModule, NavbarComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'] 
 })
@@ -19,6 +20,7 @@ export class DashboardComponent implements OnInit  {
   vehicleRes!: vehicleResp;
   form: FormGroup;
   estado: number = 2
+  today="";
 
   detallesRevision: Detallerevision[] = [
     {
@@ -126,7 +128,10 @@ export class DashboardComponent implements OnInit  {
     this.form = this.fb.group({
       
       funcionarioId: [null, Validators.required],
-      date: [null, Validators.required]
+      date: [{ value: '', disabled: false }, Validators.required],
+      color: ["", Validators.required],
+      marca: ["", Validators.required],
+      modelo: ["", Validators.required],
     });
   }
 
@@ -135,6 +140,9 @@ export class DashboardComponent implements OnInit  {
     this._vehicleService.getVehicles().subscribe((data) => {
       this.vehicles = data;
     });
+    this.today = new Date().toISOString().split('T')[0]; 
+    this.form.controls['date'].setValue(this.today);
+
 
   }
 
@@ -145,9 +153,18 @@ export class DashboardComponent implements OnInit  {
   
     this._vehicleService.getVehicle( Number(selectedVehicle?.id) ).subscribe( (data) =>{
       this.vehicleReq = data
+
+      this.form.setValue({
+        funcionarioId:"1111",
+        date: this.today,
+        color: data.color,
+        marca: data.marca,
+        modelo: data.modelo,
+      })
+
       console.log(data)
   })
-    
+
   }
 
 

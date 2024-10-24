@@ -1,3 +1,6 @@
+
+<app-navbar></app-navbar>
+
 <form (ngSubmit)="agregar()" [formGroup]="form">
 
   <div class="container " >
@@ -11,8 +14,14 @@
       </datalist>
   
       <input formControlName="funcionarioId" class="form-control" type="number" placeholder="Id de funcionario">
-      
-      <input formControlName="date" id="startDate" class="form-control" type="date">
+
+      <div class="datos-vehiculo">
+        <input formControlName="date" id="startDate" class="form-control" type="date" readonly>
+        <input formControlName="color" class="form-control" type="text" placeholder="Color" readonly>
+        <input formControlName="marca" class="form-control" type="text" placeholder="Marca" readonly>
+        <input formControlName="modelo" class="form-control" type="text" placeholder="Modelo" readonly>
+      </div>
+
     </div>
   
 
@@ -30,8 +39,7 @@
                   <thead>
                     <tr>
                       <th scope="col">Subcategoría</th>
-                      <th scope="col">Estado</th>
-                      <th scope="col">Acciones</th>
+                      <th scope="col" class="text-center" >Calificacion</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -40,7 +48,6 @@
                       @if ( item.subcategoria.includes("LUZ" ) || item.subcategoria.includes("LUCES" ) ) {
 
                         <td>{{ item.subcategoria }}</td>
-                        <td>{{ item.estado }}</td>
                         
                         <td>
 
