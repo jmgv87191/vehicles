@@ -1,34 +1,194 @@
 <form (ngSubmit)="agregar()" [formGroup]="form">
 
+  <div class="container">
+
     <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." (input)="onSelect($event)">
+    
     <datalist id="datalistOptions">
       <option *ngFor="let item of vehicles" [value]="item.id"></option>
     </datalist>
-  
-    <input formControlName="funcionarioId" class="form-control me-2" type="number" placeholder="funcionarioId">
+
+    <input formControlName="funcionarioId" class="form-control me-2" type="number" placeholder="Id de funcionario">
     
     <input formControlName="date" id="startDate" class="form-control" type="date">
   
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Subcategoría</th>
-          <th scope="col">Estado</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of detallesRevision; let i = index">
-          <td>{{ item.subcategoria }}</td>
-          <td>{{ item.estado }}</td>
-          <td>
-            <button type="button" class="btn btn-success" (click)="sumar(1, i)">+</button>
-            <button type="button" class="btn btn-danger" (click)="sumar(-1, i)">-</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+
+
+
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Luces
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subcategoría</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of detallesRevision; let i = index">
+
+                      @if ( item.subcategoria.includes("LUZ" ) || item.subcategoria.includes("LUCES" ) ) {
+
+                        <td>{{ item.subcategoria }}</td>
+                        <td>{{ item.estado }}</td>
+                        
+                        <td>
+                          <button type="button" class="btn btn-success" (click)="sumar(1, i)">+</button>
+                          <button type="button" class="btn btn-danger" (click)="sumar(-1, i)">-</button>
+                        </td>
+                      }
+                    </tr>
+                  </tbody>
+                </table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="accordionAsientos">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+            Asientos
+          </button>
+        </h2>
+        <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionAsientos">
+          <div class="accordion-body">
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subcategoría</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of detallesRevision; let i = index">
+
+                      @if ( item.subcategoria.includes("ASIENTOS" ) ) {
+
+                        <td>{{ item.subcategoria }}</td>
+                        <td>{{ item.estado }}</td>
+                        
+                        <td>
+                          <button type="button" class="btn btn-success" (click)="sumar(1, i)">+</button>
+                          <button type="button" class="btn btn-danger" (click)="sumar(-1, i)">-</button>
+                        </td>
+                      }
+                    </tr>
+                  </tbody>
+                </table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="accordionVidrios">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+            Vidrios
+          </button>
+        </h2>
+        <div id="collapse3" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionVidrios">
+          <div class="accordion-body">
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subcategoría</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of detallesRevision; let i = index">
+
+                      @if ( item.subcategoria.includes("VIDRIO" ) ) {
+
+                        <td>{{ item.subcategoria }}</td>
+                        <td>{{ item.estado }}</td>
+                        
+                        <td>
+                          <button type="button" class="btn btn-success" (click)="sumar(1, i)">+</button>
+                          <button type="button" class="btn btn-danger" (click)="sumar(-1, i)">-</button>
+                        </td>
+                      }
+                    </tr>
+                  </tbody>
+                </table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="accordionEspejos">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+            Espejos
+          </button>
+        </h2>
+        <div id="collapse4" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionEspejos">
+          <div class="accordion-body">
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subcategoría</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of detallesRevision; let i = index">
+
+                      @if ( item.subcategoria.includes("ESPEJO" ) ) {
+
+                        <td>{{ item.subcategoria }}</td>
+                        <td>{{ item.estado }}</td>
+                        
+                        <td>
+                          <button type="button" class="btn btn-success" (click)="sumar(1, i)">+</button>
+                          <button type="button" class="btn btn-danger" (click)="sumar(-1, i)">-</button>
+                        </td>
+                      }
+                    </tr>
+                  </tbody>
+                </table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
   
     <button class="btn btn-success" type="submit">Agregar</button>
+
+  </div>
+
+
+
   </form>
   
