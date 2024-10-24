@@ -22,68 +22,101 @@ export class DashboardComponent implements OnInit  {
 
   detallesRevision: Detallerevision[] = [
     {
-    subcategoria: "LUZ DELANTERA",
-    subcategoriaId : 1,
-    estado:this.estado,
-    observacion: ""
-  },
+      subcategoria: "LUZ DELANTERA",
+      subcategoriaId : 1,
+      estado:this.estado,
+      observacion: ""
+    },
     {
-    subcategoria: "LUZ TRASERA",
-    subcategoriaId : 2,
-    estado:this.estado,
-    observacion: ""
-
-  },
+      subcategoria: "LUZ TRASERA",
+      subcategoriaId : 2,
+      estado:this.estado,
+      observacion: ""
+    },
     {
-    subcategoria: "LUZ DE CUARTOS DELANTERO",
-    subcategoriaId : 3,
-    estado:this.estado,
-    observacion: ""
-
-  },
+      subcategoria: "LUZ DE CUARTOS DELANTERO",
+      subcategoriaId : 3,
+      estado:this.estado,
+      observacion: ""
+    },
     {
-    subcategoria: "LUZ DE CUARTOS TRASERO",
-    subcategoriaId : 4,
-    estado:this.estado,
-    observacion: ""
-
-  },
+      subcategoria: "LUZ DE CUARTOS TRASERO",
+      subcategoriaId : 4,
+      estado:this.estado,
+      observacion: ""
+    },
     {
-    subcategoria: "LUZ DIRECCIONAL DERECHA DELANTERA",
-    subcategoriaId : 5,
-    estado:this.estado,
-    observacion: ""
-
-  },
+      subcategoria: "LUZ DIRECCIONAL DERECHA DELANTERA",
+      subcategoriaId : 5,
+      estado:this.estado,
+      observacion: ""
+    },
     {
-    subcategoria: "LUZ DIRECCIONAL IZQUIERDA DELANTERA",
-    subcategoriaId : 6,
-    estado:this.estado,
-    observacion: ""
-
-  },
+      subcategoria: "LUZ DIRECCIONAL IZQUIERDA DELANTERA",
+      subcategoriaId : 6,
+      estado:this.estado,
+      observacion: ""
+    },
     {
-    subcategoria: "LUZ DIRECCIONAL DERECHA TRASERA",
-    subcategoriaId : 7,
-    estado:this.estado,
-    observacion: ""
-
-  },
+      subcategoria: "LUZ DIRECCIONAL DERECHA TRASERA",
+      subcategoriaId : 7,
+      estado:this.estado,
+      observacion: ""
+    },
     {
-    subcategoria: "LUZ DIRECCIONAL IZQUIERDA TRASERA",
-    subcategoriaId : 8,
-    estado:this.estado,
-    observacion: ""
-
-  },
+      subcategoria: "LUZ DIRECCIONAL IZQUIERDA TRASERA",
+      subcategoriaId : 8,
+      estado:this.estado,
+      observacion: ""
+    },
     {
-    subcategoria: "LUCES PREVENTIVAS",
-    subcategoriaId : 9,
-    estado:this.estado,
-    observacion: ""
-
-  }
-
+      subcategoria: "LUCES PREVENTIVAS",
+      subcategoriaId : 9,
+      estado:this.estado,
+      observacion: ""
+    },
+    {
+      subcategoriaId: 10,
+      subcategoria: "ASIENTOS DELANTEROS",
+      estado: this.estado,
+      observacion: ""
+    },
+    {
+      subcategoriaId: 11,
+      subcategoria: "ASIENTOS TRASEROS",
+      estado: this.estado,
+      observacion: ""
+    },
+    {
+      subcategoriaId: 12,
+      subcategoria: "VIDRIO FRENTE",
+      estado: this.estado,
+      observacion: ""
+    },
+    {
+      subcategoriaId: 13,
+      subcategoria: "VIDRIO TRASERO",
+      estado: this.estado,
+      observacion: ""
+    },
+    {
+      subcategoriaId: 14,
+      subcategoria: "ESPEJO LATERAL DERECHO",
+      estado: this.estado,
+      observacion: ""
+    },
+    {
+      subcategoriaId: 15,
+      subcategoria: "ESPEJO LATERAL IZQUIERDO",
+      estado: this.estado,
+      observacion: ""
+    },
+    {
+      subcategoriaId: 16,
+      subcategoria: "ESPEJO RETROVISOR",
+      estado: this.estado,
+      observacion: ""
+    }
   ]
   
   constructor(private _vehicleService: VehiculoService,
