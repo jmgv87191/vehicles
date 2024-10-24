@@ -1,3 +1,54 @@
 input{
     margin: 25px;
 }
+
+.btn-personalizado{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.cont_calificacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.cont_informacion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cont_informacion input{
+    width: 90%;
+}
+
+.cont-btn{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-enviar{
+    width: 100%;
+}
+
+@media (min-width:450px) {
+
+    .btn-enviar{
+        width: 80%;
+    }
+}
+
+@media (min-width:768px) {
+
+    .btn-enviar{
+        width: 50%;
+    }
+}

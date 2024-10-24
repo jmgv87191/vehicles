@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit  {
   vehicleReq!: VehicleReq;
   vehicleRes!: vehicleResp;
   form: FormGroup;
-  estado: number = 3
+  estado: number = 2
 
   detallesRevision: Detallerevision[] = [
     {
@@ -181,8 +181,18 @@ export class DashboardComponent implements OnInit  {
   }
   
   sumar(valor: number, index: number) {
-    this.detallesRevision[index].estado += valor;
+    let nuevoEstado = this.detallesRevision[index].estado + valor;
+  
+    if (nuevoEstado < 1) {
+      nuevoEstado = 1;
+      
+    } else if (nuevoEstado > 3) {
+      nuevoEstado = 3;
+    }
+  
+    this.detallesRevision[index].estado = nuevoEstado;
   }
+  
   
 
 }
