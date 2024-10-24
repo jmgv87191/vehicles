@@ -61,3 +61,25 @@ export interface Detallerevision {
     observacion:    string;
 }
 
+export interface LoginReq{
+    email: string;
+    password: string;
+}
+
+
+export interface LoginRes {
+    status:  boolean;
+    message: string;
+    data:    Data;
+    token:   string;
+}
+
+export interface Data {
+    id:                number;
+    name:              string;
+    email:             string;
+    username:          string;
+    email_verified_at: null;
+    created_at:        Date;
+    updated_at:        Date;
+}
