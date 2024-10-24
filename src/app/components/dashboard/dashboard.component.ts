@@ -145,7 +145,7 @@ export class DashboardComponent implements OnInit  {
   
     this._vehicleService.getVehicle( Number(selectedVehicle?.id) ).subscribe( (data) =>{
       this.vehicleReq = data
-
+      console.log(data)
   })
     
   }
@@ -156,7 +156,7 @@ export class DashboardComponent implements OnInit  {
       this.vehicleRes = {
         inventarioId: this.vehicleReq.id,
         funcionarioId: this.form.value.funcionarioId,
-        userId: 4343434,  
+        userId: 5,  
         fecha: this.form.value.date,
         detallerevision: this.detallesRevision.map((detalle) => ({
           subcategoriaId: detalle.subcategoriaId,  
@@ -167,6 +167,10 @@ export class DashboardComponent implements OnInit  {
       };
   
       console.log('vehicleRes:', this.vehicleRes);
+
+      this._vehicleService.addInspection(this.vehicleRes).subscribe((data)=>{
+        console.log("revision agregada")
+      })
       
       // Aquí puedes llamar a un servicio para enviar los datos (si es necesario)
       // this._vehicleService.saveVehicle(this.vehicleRes).subscribe(...);
