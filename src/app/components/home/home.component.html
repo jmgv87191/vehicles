@@ -1,22 +1,39 @@
+<nav class="navbar navbar-dark bg-dark" >
+    <div class="container-fluid">
+
+        <div class="" style="display: flex; justify-content: center; align-items: center;" >
+            <img src="/assets/logo.png" style="width: 30px; margin-right: 10px;" alt="">
+            <a (click)="onLogout()" class="navbar-brand" href="#">Sapa</a>
+        </div>
+
+        <div class="sesion">
+            <span class="text-light m-5 "> {{ usuario }}   </span>
+            <span (click)="onLogout()" class="text-light" style="cursor: pointer;" >  Logout</span>
+        </div>
+
+    </div>
+</nav>
 
 <form class="" [formGroup]="form" (ngSubmit)="enviar()" >
 
-    <mat-form-field class="example-full-width" >
-        <mat-label>Number</mat-label>
-        <input type="text"
-                placeholder="Pick one"
-                aria-label="Number"
-                matInput
-                [formControl]="myControl"
-                [matAutocomplete]="auto"
-        >
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
-            @for (option of filteredOptionsList | async; track option) {
-                <mat-option [value]="option.id">{{ option.id }}</mat-option>
-            }
-        </mat-autocomplete>
-    </mat-form-field>
-
+    <div class="id_autocomplete" >
+        <mat-form-field class="example-full-width"  >
+            <mat-label>Number</mat-label>
+            <input type="text"
+                    placeholder="Selecciona el id"
+                    aria-label="Id del vehiculo"
+                    matInput
+                    [formControl]="myControl"
+                    [matAutocomplete]="auto"
+                    
+            >
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+                @for (option of filteredOptionsList | async; track option) {
+                    <mat-option [value]="option.id">{{ option.id }}</mat-option>
+                }
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
 
 
 
@@ -79,7 +96,6 @@
 
                 </mat-form-field>
         </td>
-
         
         </ng-container>
 
@@ -121,6 +137,25 @@
     
     }
 
+    
+    @if (nullStatus) {
+
+        <div class="cont_mensaje_null"   [ngStyle]="{ 'display': nullStatus ? 'flex' : 'none' }"   >
+            <div class="mensaje_null">
+                <div class="btn_cerrar_null">
+                
+                    <span  (click)="quitar()" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
+                    </span>
+            
+                </div>
+                <span> {{ nullMsj }} </span>
+            </div>
+        </div>
+    
+    }
     
     @if (errorStatus) {
 

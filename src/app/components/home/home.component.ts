@@ -9,6 +9,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
+import { AuthService } from '../../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -50,7 +52,7 @@ const detallesRevision: Detallerevision[] = [
 
 export class HomeComponent implements OnInit {
 
-  myControl = new FormControl('');
+  myControl = new FormControl('',Validators.required);
   filteredOptionsList: Observable<VehiclesRes[]> | undefined;
   idVehiculos: VehiclesRes[] = []
   form: FormGroup;
@@ -63,25 +65,30 @@ export class HomeComponent implements OnInit {
   agregarRevision!: vehicleResp;
   today="";
   successStatus: boolean = false;
-  successMsj: string = 'Revision agregada';
   errorStatus: boolean = false;
+  nullStatus: boolean = false;
+  successMsj: string = 'Revision agregada';
   errorMsj: string = 'No se pudo agregar la revision';
-
-
+  nullMsj: string = 'No hay ningun vehiculo seleccionado';
+  usuario: string | null = "";
 
   datosAEnviar!:vehicleResp;
 
   constructor(
     private _vehicleService: VehicleService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private _authService:AuthService,
+
   ){
     this.form = this.fb.group({
       estado: this.fb.array( detallesRevision.map((item)=> this._createFormGroup(item)) ),
-      nombre_asignado: [""],
+      nombre_asignado: ["",Validators.required],
       marca:[""],
       modelo:[""],
       date: [''],
-
+      id_vehicle: new FormControl(2, Validators.required)
+      
     })
   }
 
@@ -90,6 +97,7 @@ export class HomeComponent implements OnInit {
 
     this.today = new Date().toISOString().split('T')[0]; 
     this.form.controls['date'].setValue(this.today);
+    this.usuario = localStorage.getItem('usuario')
 
     this.filteredOptionsList = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -186,46 +194,68 @@ export class HomeComponent implements OnInit {
   }
 
   enviar(){
-    
-    this.agregarRevision ={
-      inventarioId: this.vehicleReq.id,
-      funcionarioId: Number(this.vehicleReq.revision![0].funcionarioId),
-      userId: this.vehicleReq.userId,  
-      fecha: this.today,
-      detallerevision:this.productFormArray.value
-    } 
-    
-    this._vehicleService.addInspection(this.agregarRevision).subscribe(
-      (data) => {
-        this.successStatus = true;
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-      });
-      document.body.style.overflow = "hidden";
-      },
-      (error) => {
-        console.log(this.agregarRevision)
-        console.error('Error al agregar la revisión:', error);
-        this.errorStatus = true;
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-      });
+
+    if (this.myControl.valid) {
+
+      
+      this.agregarRevision ={
+        inventarioId: this.vehicleReq.id,
+        funcionarioId: Number(this.vehicleReq.revision![0].funcionarioId),
+        userId: this.vehicleReq.userId,  
+        fecha: this.today,
+        detallerevision:this.productFormArray.value
+      } 
+      
+      this._vehicleService.addInspection(this.agregarRevision).subscribe(
+        (data) => {
+          this.successStatus = true;
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        document.body.style.overflow = "hidden";
+        },
+        (error) => {
+          console.log(this.agregarRevision)
+          console.error('Error al agregar la revisión:', error);
+          this.errorStatus = true;
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        document.body.style.overflow = "hidden";
+  
+        }
+      );
+    }
+    else{
+      this.nullStatus = true;
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+      console.log('El campo es obligatorio, no se puede enviar.');
       document.body.style.overflow = "hidden";
 
-      }
-    );
+    }
+
 
   }
 
   quitar() {
     this.successStatus = false;
     this.errorStatus = false;
+    this.nullStatus = false;
     this.form.reset();
+    this.myControl.reset();
+
     document.body.style.overflow = "auto";
 
   }
 
+  onLogout(){
+    this._authService.logOut();
+    this.router.navigate(['/'])
+  }
 
 }

@@ -63,3 +63,72 @@
         }
     }
 }
+
+.cont_mensaje_null {
+    background-color: rgba(0, 0, 0, 0.178);
+    width: 100%;
+    height: 100vh;
+    position: fixed; /* Se usa fixed para que cubra toda la pantalla */
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que el mensaje esté encima de otros elementos */
+
+    .mensaje_null {
+        background-color: white;
+        padding: 80px 20px;
+        border-radius: 10px;
+        color: rgb(141, 13, 13);
+        position: relative;
+
+        .btn_cerrar_null {
+            border-radius: 5px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(219, 219, 219, 0.637);
+            }
+        }
+    }
+}
+
+
+.cont_datos{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.id_autocomplete{
+    width: 100%;
+    height: auto;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.id_autocomplete>:first-child {
+    width: 80%;
+}
+
+@media (max-width: 1000px) {
+
+    .cont_datos{
+        flex-wrap: wrap;
+    }
+
+    .cont_datos > :not(:first-child) {
+        width: 42%;
+    }
+
+    .cont_datos>:first-child {
+        width: 90%;
+    }
+
+
+}
+
