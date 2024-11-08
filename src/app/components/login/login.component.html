@@ -1,0 +1,50 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="./assets/new.png" id="icon" alt="User Icon" class="mt-5" />
+    </div>
+
+    <!-- Login Form -->
+    <form (ngSubmit)="iniciarSesion()" [formGroup]="form" >
+      <input formControlName="email" type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+
+  <input style="width: 80%;" formControlName="password" type="password" class="form-control" id="password" placeholder="Password" name="login">
+
+
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#"></a>
+    </div>
+
+  </div>
+</div>
+
+@if (errorStatus) {
+
+    <div class="cont_mensaje_error"   [ngStyle]="{ 'display': errorStatus ? 'flex' : 'none' }"   >
+      <div class="mensaje_error">
+        <div class="btn_cerrar_error">
+
+          <span  (click)="quitar()" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+          </span>
+
+        </div>
+        <span> {{ errorMsj }} </span>
+      </div>
+    </div>
+
+}
