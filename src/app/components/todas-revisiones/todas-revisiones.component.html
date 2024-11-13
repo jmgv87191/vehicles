@@ -11,8 +11,15 @@
     </div>
 </nav>
 
-<div class="container">
+<form class="container" [formGroup]="form" >
+    
+        <mat-form-field class="example-full-width">
+            <mat-label>Marca</mat-label>
+            <input readonly="" formControlName="marca" matInput placeholder="Ex. Nissan" >
+        </mat-form-field>
+    
     <table class="table" style="margin-top: 20px;" >
+
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -20,6 +27,7 @@
                 <th class="text-center" scope="col">Detalles</th>
             </tr>
         </thead>
+
         <tbody>
             @for (item of todasLasRevisiones; track $index) {
                 <tr>
@@ -28,7 +36,7 @@
                     <td class="text-center" > <button class="btn btn-success" routerLink="/detalles/{{ item.id }}"  >Ver mas</button> </td>
                 </tr>
             }
-    
         </tbody>
+
     </table>
-</div>
+</form>

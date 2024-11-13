@@ -15,6 +15,7 @@ export class MonitorComponent implements OnInit {
 
   usuario: string | null = "";
   tablaMonitor: TablaMonitor[] = []
+  modelo!:string;
 
   @Output() marca: EventEmitter<string> = new EventEmitter<string>();
 
@@ -35,7 +36,6 @@ constructor(
   getVehicles(): void {
     this._vehicleService.getVehiclesMonitoreo().subscribe((data: TablaMonitor[]) => {
       this.tablaMonitor = data;
-      console.log(this.tablaMonitor);
       
       if (this.tablaMonitor.length > 0) {
         this.marca.emit(this.tablaMonitor[0].marca);
@@ -48,4 +48,6 @@ constructor(
     this._authService.logOut();
     this.router.navigate(['/'])
   }
+
+  
 }

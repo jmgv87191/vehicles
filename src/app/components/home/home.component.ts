@@ -72,6 +72,30 @@ export class HomeComponent implements OnInit {
   nullMsj: string = 'No hay ningun vehiculo seleccionado';
   usuario: string | null = "";
 
+
+
+  filas = [
+    { id: 0, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 1, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 2, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 3, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 4, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },]  },
+    { id: 5, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 6, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 7, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 8, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 9, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 10, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 11, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 12, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 13, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+    { id: 14, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },]  },
+    { id: 15, boton: [{ id: 1, color: 'grey' },{ id: 2, color: 'grey' },{ id: 3, color: 'grey' },] },
+  ];
+
+
+
+
   datosAEnviar!:vehicleResp;
 
   constructor(
@@ -169,35 +193,1373 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  get productFormArray() {
+  get productFormArray() { 
     return this.form.get('estado') as FormArray;
   }
 
-  sumar(valor: number, index: number) {
-    const formArray = this.productFormArray;
+  sumar1(valor: number, index: number) {
+
+    console.log(index)
+
+    if (index===0) {
+      
+      const formArray = this.productFormArray;
   
-    if (formArray && formArray.at(index)) {
-      const estadoControl = formArray.at(index).get('estado') as FormControl;
-  
-      if (estadoControl) {
-        let nuevoEstado = estadoControl.value + valor;
-  
-        if (nuevoEstado < 1) {
-          nuevoEstado = 1;
-        } else if (nuevoEstado > 3) {
-          nuevoEstado = 3;
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
         }
-        estadoControl.setValue(nuevoEstado);
-        estadoControl.updateValueAndValidity();
-  
-        console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
       } else {
-        console.error('El control "estado" no está definido para el índice', index);
-      }
-    } else {
-      console.error('El índice no existe en el FormArray:', index);
-    } 
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===1) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===2) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===3) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===4) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===5) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===6) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===7) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===8) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===9) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===10) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===11) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===12) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===13) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===14) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===15) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 1;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a verde
+          this.filas[index].boton[0].color = 'green';  
+          this.filas[index].boton[1].color = 'grey';  
+          this.filas[index].boton[2].color = 'grey';  
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+
+
+
   }
+
+  sumar2(valor: number, index: number) {
+
+    console.log(index)
+
+    if (index===0) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===1) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===2) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===3) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===4) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===5) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===6) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===7) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===8) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===9) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===10) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===11) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===12) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===13) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===14) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===15) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 2;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+
+          this.filas[index].boton[1].color = 'yellow';
+          this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[2].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+
+  }
+
+  sumar3(valor: number, index: number) {
+
+    console.log(index)
+
+    if (index===0) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===1) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===2) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===3) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===4) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===5) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===6) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===7) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===8) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===9) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===10) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===11) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===12) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===13) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===14) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+    if (index===15) {
+      
+      const formArray = this.productFormArray;
+  
+      if (formArray && formArray.at(index)) {
+        const estadoControl = formArray.at(index).get('estado') as FormControl;
+    
+        if (estadoControl) {
+          let nuevoEstado = 3;
+          this.filas.forEach(fila => fila.boton[0].color = 'grey');
+          // Luego, cambiar el color de la fila seleccionada a rojo
+          this.filas[index].boton[2].color = 'red';
+          this.filas[index].boton[1].color = 'grey';
+          this.filas[index].boton[0].color = 'grey';
+        
+          estadoControl.setValue(nuevoEstado);
+          estadoControl.updateValueAndValidity();
+    
+          console.log(`Nuevo estado en el índice ${index}:`, nuevoEstado);
+        } else {
+          console.error('El control "estado" no está definido para el índice', index);
+        }
+      } else {
+        console.error('El índice no existe en el FormArray:', index);
+      } 
+
+    }
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   enviar(){
 
