@@ -1,0 +1,34 @@
+<nav class="navbar navbar-dark bg-dark" >
+    <div class="container-fluid">
+
+        <div class="" style="display: flex; justify-content: center; align-items: center;" >
+            <img src="/assets/logo.png" style="width: 30px; margin-right: 10px;" alt="">
+            <a  class="navbar-brand" href="#">Sapa</a>
+        </div>
+        <span style="color: white;" routerLink="/monitor" >Regresar</span>
+
+
+    </div>
+</nav>
+
+<div class="container">
+    <table class="table" style="margin-top: 20px;" >
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th class="text-center" scope="col">Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of todasLasRevisiones; track $index) {
+                <tr>
+                    <td> {{ item.id }} </td>
+                    <td> {{ item.fecha }} </td>
+                    <td class="text-center" > <button class="btn btn-success" routerLink="/detalles/{{ item.id }}"  >Ver mas</button> </td>
+                </tr>
+            }
+    
+        </tbody>
+    </table>
+</div>

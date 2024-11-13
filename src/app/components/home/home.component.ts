@@ -87,8 +87,8 @@ export class HomeComponent implements OnInit {
       marca:[""],
       modelo:[""],
       date: [''],
+      observacionesGen:[""],
       id_vehicle: new FormControl(2, Validators.required)
-      
     })
   }
 
@@ -114,41 +114,47 @@ export class HomeComponent implements OnInit {
   private _listFilter(value: string): VehiclesRes[] {
     const filterValue = value;
 
-    return this.idVehiculos.filter(option => String(option.id).includes(filterValue));
+    return this.idVehiculos.filter(option => String(option.no_inventario).includes(filterValue));
   }
 
   onOptionSelected(event: any) {
+    const selectedOptionValue = event.option.value;  // El valor es no_inventario
 
-    this.selectedVehicleId = event.option.value; 
-    console.log('ID seleccionado:', this.selectedVehicleId);
+    // Buscar el vehículo correspondiente a no_inventario
+    const selectedVehicle = this.idVehiculos.find(
+      (vehicle) => vehicle.no_inventario === selectedOptionValue
+    );
 
-    this._vehicleService.getVehicle( Number(this.selectedVehicleId) ).subscribe((data)=>{
+    if (selectedVehicle) {
+      this.selectedVehicleId = String(selectedVehicle.id);  // Guardar el id
 
-      this.vehicleReq = data
-      console.log(this.vehicleReq)
+      // Obtener la información del vehículo seleccionado
+      this._vehicleService.getVehicle(Number(this.selectedVehicleId)).subscribe((data) => {
+        this.vehicleReq = data;
 
-      for (let i = 0; i < detallesRevision.length; i++) {
+        // Actualizar los detalles de la revisión con los datos del vehículo
+        for (let i = 0; i < detallesRevision.length; i++) {
+          const lastRevisionDetail = data.revision[data.revision.length - 1]?.detalles[i];
 
-        if (data.revision[data.revision.length-1].detalles[i].estado !==null  && data.revision[data.revision.length-1].detalles[i].observacion !==null) {
-          detallesRevision[i].estado = data.revision[data.revision.length-1].detalles[i].estado
-          detallesRevision[i].observacion = data.revision[data.revision.length-1].detalles[i].observacion 
+          if (lastRevisionDetail?.estado != null && lastRevisionDetail?.observacion != null) {
+            detallesRevision[i].estado = lastRevisionDetail.estado;
+            detallesRevision[i].observacion = lastRevisionDetail.observacion;
+          } else {
+            detallesRevision[i].estado = 2;
+            detallesRevision[i].observacion = 'Observacion por defecto';
+          }
         }
-        else{
-          detallesRevision[i].estado = 2
-          detallesRevision[i].observacion = "Observacion por defecto"
-        }
-        
-      }
-      
-      this.form = this.fb.group({
-        estado: this.fb.array( detallesRevision.map((item)=> this._createFormGroup(item)) ),
-        nombre_asignado: [data.asignado],
-        marca: [data.marca],
-        modelo: [data.modelo]
+
+        // Actualizar el formulario con los nuevos datos
+        this.form = this.fb.group({
+          estado: this.fb.array(detallesRevision.map((item) => this._createFormGroup(item))),
+          nombre_asignado: [data.asignado],
+          marca: [data.marca],
+          modelo: [data.modelo],
+          observacionesGen:this.vehicleReq.revision[this.vehicleReq.revision.length-1].observaciones
+        });
       });
-      
-    })
-    
+    }
   }
 
   private _createFormGroup( vehicle: Detallerevision ){
@@ -197,14 +203,19 @@ export class HomeComponent implements OnInit {
 
     if (this.myControl.valid) {
 
+    
       
       this.agregarRevision ={
         inventarioId: this.vehicleReq.id,
-        funcionarioId: Number(this.vehicleReq.revision![0].funcionarioId),
+        // funcionarioId: Number(this.vehicleReq.revision![0].funcionarioId),
+        funcionarioId: this.vehicleReq.asignadoId,
         userId: this.vehicleReq.userId,  
         fecha: this.today,
+        observaciones: this.form.value.observacionesGen,
         detallerevision:this.productFormArray.value
       } 
+
+
       
       this._vehicleService.addInspection(this.agregarRevision).subscribe(
         (data) => {
@@ -224,7 +235,6 @@ export class HomeComponent implements OnInit {
             behavior: 'smooth'
         });
         document.body.style.overflow = "hidden";
-  
         }
       );
     }

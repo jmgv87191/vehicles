@@ -57,6 +57,7 @@ export interface Revision {
     funcionarioId:    string;
     funcionario:      string;
     "fecha revision": Date;
+    observaciones:string;
     detalles:    Subcategoria[];
     
 }
@@ -75,6 +76,7 @@ export interface vehicleResp {
     funcionarioId:   number;
     userId:          number;
     fecha:           string;
+    observaciones:string;
     detallerevision?: Detallerevision[];
 }
 
@@ -86,3 +88,52 @@ export interface Detallerevision {
 }
 
 /* Enviar Post  al backend*/
+
+
+/* para el monitor */
+
+export interface TablaMonitor{
+
+    id:            number;
+    noeconomico:   number;
+    noinventario:  number;
+    area:          string;
+    bien:          string;
+    descripcion:   string;
+    marca:         string;
+    serie:         string;
+    estado:        string;
+    ubicacion:     string;
+    factura:       null | string;
+    observaciones: null;
+    asignado:      null | string;
+    asignadoId:    number | null;
+    modelo:        number | null;
+    nota:          null | string;
+    color:         string;
+    user:          string;
+    userId:        number;
+    revision:      RevisionTablaMonitor;
+}
+
+export interface RevisionTablaMonitor {
+    fecha_revision: Date ;
+}
+
+export interface MonitorVehicle {
+    id:             number;
+    fecha:          Date;
+    inventario_id:  number;
+    funcionario_id: number;
+    user_id:        number;
+    created_at:     Date;
+    updated_at:     Date;
+    deleted_at:     Date;
+}
+
+export interface RevisionMonitor  {
+    id:           number;
+    estado:       number;
+    observacion:  string;
+    subcategoria: string;
+}

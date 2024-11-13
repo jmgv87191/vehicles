@@ -139,7 +139,8 @@ form{
 .cont_table{
     display: flex;
     flex-wrap: nowrap;
-    border: 1px solid black;
+    overflow: scroll;
+    padding: 10px;
 }
 
 .mat-column-Calificacion {
@@ -155,6 +156,16 @@ form{
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
+}
+
+.contobservaciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    mat-form-field{
+        width: 50%;
+    }
 }
 
 
@@ -174,6 +185,15 @@ form{
     .cont_btn button{
         width: 95%;
     }
+
+    .contobservaciones{
+
+        mat-form-field{
+            margin-top: 10px;
+            width: 95%;
+        }
+    }
+    
     
 
 }
