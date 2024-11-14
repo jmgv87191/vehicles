@@ -20,22 +20,22 @@ export interface PeriodicElement {
 }
 
 const detallesRevision: Detallerevision[] = [
-  { subcategoria: "LUZ DELANTERA", subcategoriaId: 1, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoria: "LUZ TRASERA", subcategoriaId: 2, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoria: "LUZ DE CUARTOS DELANTERO", subcategoriaId: 3, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoria: "LUZ DE CUARTOS TRASERO", subcategoriaId: 4, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoria: "LUZ DIRECCIONAL DERECHA DELANTERA", subcategoriaId: 5, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoria: "LUZ DIRECCIONAL IZQUIERDA DELANTERA", subcategoriaId: 6, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoria: "LUZ DIRECCIONAL DERECHA TRASERA", subcategoriaId: 7, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoria: "LUZ DIRECCIONAL IZQUIERDA TRASERA", subcategoriaId: 8, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoria: "LUCES PREVENTIVAS", subcategoriaId: 9, estado: 1, observacion: "Observacion por defecto" },
-  { subcategoriaId: 10, subcategoria: "ASIENTOS DELANTEROS", estado: 1, observacion: "Observacion por defecto" },
-  { subcategoriaId: 11, subcategoria: "ASIENTOS TRASEROS", estado: 1, observacion: "Observacion por defecto" },
-  { subcategoriaId: 12, subcategoria: "VIDRIO FRENTE", estado: 1, observacion: "Observacion por defecto" },
-  { subcategoriaId: 13, subcategoria: "VIDRIO TRASERO", estado: 1, observacion: "Observacion por defecto" },
-  { subcategoriaId: 14, subcategoria: "ESPEJO LATERAL DERECHO", estado: 1, observacion: "Observacion por defecto" },
-  { subcategoriaId: 15, subcategoria: "ESPEJO LATERAL IZQUIERDO", estado: 1, observacion: "Observacion por defecto" },
-  { subcategoriaId: 16, subcategoria: "ESPEJO RETROVISOR", estado: 1, observacion: "Observacion por defecto" }
+  { subcategoria: "LUZ DELANTERA", subcategoriaId: 1, estado: 1, observacion: "" },
+  { subcategoria: "LUZ TRASERA", subcategoriaId: 2, estado: 1, observacion: "" },
+  { subcategoria: "LUZ DE CUARTOS DELANTERO", subcategoriaId: 3, estado: 1, observacion: "" },
+  { subcategoria: "LUZ DE CUARTOS TRASERO", subcategoriaId: 4, estado: 1, observacion: "" },
+  { subcategoria: "LUZ DIRECCIONAL DERECHA DELANTERA", subcategoriaId: 5, estado: 1, observacion: "" },
+  { subcategoria: "LUZ DIRECCIONAL IZQUIERDA DELANTERA", subcategoriaId: 6, estado: 1, observacion: "" },
+  { subcategoria: "LUZ DIRECCIONAL DERECHA TRASERA", subcategoriaId: 7, estado: 1, observacion: "" },
+  { subcategoria: "LUZ DIRECCIONAL IZQUIERDA TRASERA", subcategoriaId: 8, estado: 1, observacion: "" },
+  { subcategoria: "LUCES PREVENTIVAS", subcategoriaId: 9, estado: 1, observacion: "" },
+  { subcategoriaId: 10, subcategoria: "ASIENTOS DELANTEROS", estado: 1, observacion: "" },
+  { subcategoriaId: 11, subcategoria: "ASIENTOS TRASEROS", estado: 1, observacion: "" },
+  { subcategoriaId: 12, subcategoria: "VIDRIO FRENTE", estado: 1, observacion: "" },
+  { subcategoriaId: 13, subcategoria: "VIDRIO TRASERO", estado: 1, observacion: "" },
+  { subcategoriaId: 14, subcategoria: "ESPEJO LATERAL DERECHO", estado: 1, observacion: "" },
+  { subcategoriaId: 15, subcategoria: "ESPEJO LATERAL IZQUIERDO", estado: 1, observacion: "" },
+  { subcategoriaId: 16, subcategoria: "ESPEJO RETROVISOR", estado: 1, observacion: "" }
 ];
 
 
@@ -138,7 +138,7 @@ export class HomeComponent implements OnInit {
   private _listFilter(value: string): VehiclesRes[] {
     const filterValue = value;
 
-    return this.idVehiculos.filter(option => String(option.no_inventario).includes(filterValue));
+    return this.idVehiculos.filter(option => String(option.no_economico).includes(filterValue));
   }
 
   onOptionSelected(event: any) {
@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit {
 
     // Buscar el vehículo correspondiente a no_inventario
     const selectedVehicle = this.idVehiculos.find(
-      (vehicle) => vehicle.no_inventario === selectedOptionValue
+      (vehicle) => vehicle.no_economico === selectedOptionValue
     );
 
     if (selectedVehicle) {
@@ -163,9 +163,39 @@ export class HomeComponent implements OnInit {
           if (lastRevisionDetail?.estado != null && lastRevisionDetail?.observacion != null) {
             detallesRevision[i].estado = lastRevisionDetail.estado;
             detallesRevision[i].observacion = lastRevisionDetail.observacion;
+
+            if (detallesRevision[i].estado===1) {
+              this.filas[i].boton[0].color = 'green';  
+              this.filas[i].boton[1].color = 'grey';  
+              this.filas[i].boton[2].color = 'grey';  
+            }else if( detallesRevision[i].estado===2 ){
+
+              this.filas[i].boton[1].color = 'yellow';  
+              this.filas[i].boton[0].color = 'grey';  
+              this.filas[i].boton[2].color = 'grey';  
+            }else{
+              this.filas[i].boton[2].color = 'red';  
+              this.filas[i].boton[1].color = 'grey';  
+              this.filas[i].boton[0].color = 'grey';  
+            }
+
           } else {
             detallesRevision[i].estado = 2;
-            detallesRevision[i].observacion = 'Observacion por defecto';
+            detallesRevision[i].observacion = '';
+            if (detallesRevision[i].estado===1) {
+              this.filas[i].boton[0].color = 'green';  
+              this.filas[i].boton[1].color = 'grey';  
+              this.filas[i].boton[2].color = 'grey';  
+            }else if( detallesRevision[i].estado===2 ){
+
+              this.filas[i].boton[1].color = 'yellow';  
+              this.filas[i].boton[0].color = 'grey';  
+              this.filas[i].boton[2].color = 'grey';  
+            }else{
+              this.filas[i].boton[2].color = 'red';  
+              this.filas[i].boton[1].color = 'grey';  
+              this.filas[i].boton[0].color = 'grey';  
+            }
           }
         }
 
@@ -210,7 +240,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -236,7 +265,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -262,8 +290,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -289,8 +315,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -316,8 +340,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -343,8 +365,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -370,8 +390,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -397,8 +415,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -424,8 +440,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -451,8 +465,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -478,8 +490,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -505,8 +515,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -532,8 +540,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -559,8 +565,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -586,8 +590,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -613,8 +615,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 1;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a verde
           this.filas[index].boton[0].color = 'green';  
           this.filas[index].boton[1].color = 'grey';  
           this.filas[index].boton[2].color = 'grey';  
@@ -630,6 +630,7 @@ export class HomeComponent implements OnInit {
       } 
 
     }
+
 
 
 
@@ -649,10 +650,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -677,10 +677,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -705,10 +704,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -733,10 +731,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -761,10 +758,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -789,10 +785,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -817,10 +812,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -845,10 +839,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -873,10 +866,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -901,10 +893,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -929,10 +920,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -957,10 +947,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -985,10 +974,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -1013,10 +1001,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -1041,10 +1028,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -1069,10 +1055,9 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 2;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
 
-          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[0].color = 'grey';
+          this.filas[index].boton[1].color = 'yellow';
           this.filas[index].boton[2].color = 'grey';
         
           estadoControl.setValue(nuevoEstado);
@@ -1104,8 +1089,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1132,8 +1115,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1160,8 +1141,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1188,8 +1167,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1216,8 +1193,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1244,8 +1219,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1272,8 +1245,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1300,8 +1271,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1328,8 +1297,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1356,8 +1323,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1384,8 +1349,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1412,8 +1375,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1440,8 +1401,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1468,8 +1427,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1496,8 +1453,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1524,8 +1479,6 @@ export class HomeComponent implements OnInit {
     
         if (estadoControl) {
           let nuevoEstado = 3;
-          this.filas.forEach(fila => fila.boton[0].color = 'grey');
-          // Luego, cambiar el color de la fila seleccionada a rojo
           this.filas[index].boton[2].color = 'red';
           this.filas[index].boton[1].color = 'grey';
           this.filas[index].boton[0].color = 'grey';
@@ -1546,8 +1499,9 @@ export class HomeComponent implements OnInit {
 
 
 
-  }
 
+
+  }
 
 
 
@@ -1582,6 +1536,22 @@ export class HomeComponent implements OnInit {
       this._vehicleService.addInspection(this.agregarRevision).subscribe(
         (data) => {
           this.successStatus = true;
+
+          setTimeout(() => {
+            this.successStatus = false;
+            document.body.style.overflow = "auto";
+            this.form.reset();
+            this.myControl.reset();
+            
+            for (let i = 0; i < detallesRevision.length; i++) {
+              detallesRevision[i].estado = 0;
+              this.filas[i].boton[0].color = 'grey';  
+              this.filas[i].boton[1].color = 'grey';  
+              this.filas[i].boton[2].color = 'grey';  
+            }
+        
+          }, 1000);
+
           window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -1592,6 +1562,16 @@ export class HomeComponent implements OnInit {
           console.log(this.agregarRevision)
           console.error('Error al agregar la revisión:', error);
           this.errorStatus = true;
+
+
+          setTimeout(() => {
+            this.errorStatus = false;
+            document.body.style.overflow = "auto";
+            this.form.reset();
+            this.myControl.reset();
+        
+          }, 1000);
+
           window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -1602,6 +1582,15 @@ export class HomeComponent implements OnInit {
     }
     else{
       this.nullStatus = true;
+      
+      setTimeout(() => {
+        this.nullStatus = true;
+        document.body.style.overflow = "auto";
+        this.form.reset();
+        this.myControl.reset();
+    
+      }, 1000);
+
       window.scrollTo({
         top: 0,
         behavior: 'smooth'

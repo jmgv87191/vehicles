@@ -27,7 +27,7 @@ export interface VehiclesRes {
 
     id:            number;
     no_inventario: number;
-
+    no_economico: number;
 }
 
 export interface VehicleRes {
