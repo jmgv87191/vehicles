@@ -12,18 +12,50 @@
 </nav>
 
 <form class="container" [formGroup]="form" >
+
+    <h1 class="text-center mt-5" >Historial de revisiones</h1>
+
+    <div class="contVehiculo">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Asignado</mat-label>
+            <input readonly="" formControlName="asignado" matInput placeholder="" >
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <mat-label>No. Economico</mat-label>
+            <input readonly="" formControlName="noEconomico" matInput placeholder="" >
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <mat-label>Ubicación</mat-label>
+            <input readonly="" formControlName="ubicacion" matInput placeholder="" >
+        </mat-form-field>
     
         <mat-form-field class="example-full-width">
             <mat-label>Marca</mat-label>
-            <input readonly="" formControlName="marca" matInput placeholder="Ex. Nissan" >
+            <input readonly="" formControlName="marca" matInput placeholder="" >
         </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <mat-label>Modelo</mat-label>
+            <input readonly="" formControlName="modelo" matInput placeholder="" >
+        </mat-form-field>
+    
+        <mat-form-field  class="example-full-width">
+            <mat-label>Descripcion</mat-label>
+            <input readonly="" formControlName="descripcion" matInput placeholder="" >
+        </mat-form-field>
+
+    </div>
+    
     
     <table class="table" style="margin-top: 20px;" >
 
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Fecha</th>
+                <th scope="col" class="text-center">No. de revisión</th>
+                <th scope="col" class="text-center">Fecha</th>
                 <th class="text-center" scope="col">Detalles</th>
             </tr>
         </thead>
@@ -31,8 +63,8 @@
         <tbody>
             @for (item of todasLasRevisiones; track $index) {
                 <tr>
-                    <td> {{ item.id }} </td>
-                    <td> {{ item.fecha }} </td>
+                    <td class="text-center"> {{ item.id }} </td>
+                    <td class="text-center"> {{ item.fecha }} </td>
                     <td class="text-center" > <button class="btn btn-success" routerLink="/detalles/{{ item.id }}"  >Ver mas</button> </td>
                 </tr>
             }

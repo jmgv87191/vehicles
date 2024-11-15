@@ -12,7 +12,8 @@ import { RevisionMonitor } from '../../interfaces/vehicle';
 })
 export class VerDetallesComponent implements OnInit {
 
-  contDetalles: RevisionMonitor[] = []
+  contDetalles: RevisionMonitor[] = [];
+  id: number | undefined;
 
   constructor(
     private aRoute:ActivatedRoute,
@@ -22,9 +23,8 @@ export class VerDetallesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log( this.aRoute.snapshot.paramMap.get('id') )
 
-
+    this.id = Number(this.aRoute.snapshot.paramMap.get('id'))
     this._vehicleService.getDetalles(Number(this.aRoute.snapshot.paramMap.get('id'))).subscribe((data)=>{
       console.log(data)
       this.contDetalles = data

@@ -3,11 +3,12 @@ import { AuthService } from '../../auth/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { TablaMonitor } from '../../interfaces/vehicle';
 import { VehicleService } from '../../services/vehicle.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-monitor',
   standalone: true,
-  imports: [ RouterLink ],
+  imports: [ RouterLink, CommonModule ],
   templateUrl: './monitor.component.html',
   styleUrl: './monitor.component.css'
 })
@@ -37,6 +38,7 @@ constructor(
     this._vehicleService.getVehiclesMonitoreo().subscribe((data: TablaMonitor[]) => {
       this.tablaMonitor = data;
       
+
       if (this.tablaMonitor.length > 0) {
         this.marca.emit(this.tablaMonitor[0].marca);
       }

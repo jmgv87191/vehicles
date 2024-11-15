@@ -29,7 +29,11 @@ export class TodasRevisionesComponent implements OnInit {
 
     this.form = fb.group({
       marca: [ "" ],
-      modelo:[""]
+      modelo:[""],
+      asignado:[""],
+      noEconomico:[""],
+      ubicacion:[""],
+      descripcion:[""],
     })
 
   }
@@ -40,14 +44,18 @@ export class TodasRevisionesComponent implements OnInit {
     this.id = Number(this.aRoute.snapshot.paramMap.get('id'))
 
     this._vehicleService.getVehicleMonitoreo( this.id ).subscribe((data)=>{
+      console.log(data)
       this.todasLasRevisiones = data;
     })
 
   this._vehicleService.getVehicle(this.id).subscribe((data)=>{
-    console.log(data)
     this.form.setValue({
       marca: data.marca,
-      modelo: data.modelo
+      modelo: data.modelo,
+      asignado: data.asignado,
+      noEconomico: data.noeconomico,
+      ubicacion: data.ubicacion,
+      descripcion: data.descripcion
     })
   })
 

@@ -181,7 +181,7 @@ export class HomeComponent implements OnInit {
 
           } else {
             detallesRevision[i].estado = 2;
-            detallesRevision[i].observacion = '';
+            detallesRevision[i].observacion = '.';
             if (detallesRevision[i].estado===1) {
               this.filas[i].boton[0].color = 'green';  
               this.filas[i].boton[1].color = 'grey';  

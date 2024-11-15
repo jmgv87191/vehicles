@@ -16,14 +16,15 @@
 
 <form action="" class="container" >
 
+    <h1 class="text-center mt-5" >Vehiculos</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Vehiculo</th>
-                <th scope="col">Ultima revision</th>
-                <th scope="col">Todas las revisiones</th>
+                <th scope="col" class="text-center" >No. Economico</th>
+                <th scope="col" class="text-center" >Vehiculo</th>
+                <th scope="col" class="text-center" >Ultima revision</th>
+                <th scope="col" class="text-center" >Todas las revisiones</th>
             </tr>
         </thead>
         <tbody>
@@ -31,10 +32,10 @@
             @for (item of tablaMonitor; track $index) {
 
                 <tr>
-                    <td> {{ item.noinventario }} </td>
-                    <td>  {{ item.marca }} {{ item.modelo }} </td>
-                    <td> {{ item.revision.fecha_revision }} </td>
-                    <td class="text-center" >
+                    <td class="text-center"> {{ item.noeconomico }} </td>
+                    <td class="text-center">  {{ item.marca }} {{ item.modelo }} </td>
+                    <td class="text-center" [ngClass]="{'text-rojo': item.revision.fecha_revision === 'Sin revisión'}"> {{ item.revision.fecha_revision }} </td>
+                    <td class="text-center">
                         <button 
                         type="button" 
                         class="btn btn-success"

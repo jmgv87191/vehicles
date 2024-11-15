@@ -56,7 +56,7 @@ export interface Revision {
     vehiculoId:       number;
     funcionarioId:    string;
     funcionario:      string;
-    "fecha revision": Date;
+    "fecha revision": string;
     observaciones:string;
     detalles:    Subcategoria[];
     
@@ -117,7 +117,7 @@ export interface TablaMonitor{
 }
 
 export interface RevisionTablaMonitor {
-    fecha_revision: Date ;
+    fecha_revision: string ;
 }
 
 export interface MonitorVehicle {
