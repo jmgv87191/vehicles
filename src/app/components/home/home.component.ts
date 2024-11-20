@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { VehicleService } from '../../services/vehicle.service';
 import { Detallerevision, Subcategoria, VehicleRes, vehicleResp, VehiclesRes } from '../../interfaces/vehicle';
 import {FormControl, FormsModule, ReactiveFormsModule, Validators, FormBuilder, FormGroup, FormArray} from '@angular/forms';
@@ -8,9 +8,10 @@ import {AsyncPipe, CommonModule} from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import { AuthService } from '../../auth/services/auth.service';
 import { Router } from '@angular/router';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 
 export interface PeriodicElement {
   name: string;
@@ -44,7 +45,7 @@ const detallesRevision: Detallerevision[] = [
   standalone: true,
   imports: [
     FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule,
-    AsyncPipe, ReactiveFormsModule, CommonModule, MatTableModule
+    AsyncPipe, ReactiveFormsModule, CommonModule, MatTableModule, MatTableModule, MatPaginatorModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
