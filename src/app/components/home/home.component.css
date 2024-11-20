@@ -184,6 +184,15 @@ table{
 
 }
 
+
+.encabezado{
+    background-color: rgb(83, 139, 83);
+    padding: 5% 0;
+    display: flex;
+    justify-content: center;align-items: center;
+    color: white;
+}
+
 @media (max-width: 1000px) {
 
     .cont_datos{
@@ -208,8 +217,13 @@ table{
             width: 95%;
         }
     }
+
+    .encabezado{
+        h1{
+            font-size: 35px;
+        }
+    }
     
     
 
 }
-

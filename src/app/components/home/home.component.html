@@ -14,6 +14,10 @@
     </div>
 </nav>
 
+<div class="encabezado">
+    <h1>Revision vehicular</h1>
+</div>
+
 <form class="" [formGroup]="form" (ngSubmit)="enviar()" >
 
     <div class="id_autocomplete">
@@ -106,7 +110,7 @@
 
     
 
-                        <input   formControlName="estado" type="number" matInput>
+                        <input style="display: none;"   formControlName="estado" type="number" matInput>
     
                     </mat-form-field>
                 </td>
