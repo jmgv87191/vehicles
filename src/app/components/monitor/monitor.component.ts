@@ -7,13 +7,17 @@ import { CommonModule } from '@angular/common';
 import {Sort, MatSortModule} from '@angular/material/sort';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
 @Component({
   selector: 'app-monitor',
   standalone: true,
-  imports: [ RouterLink, CommonModule, MatTableModule, MatPaginatorModule, MatSortModule ],
+  imports: [ RouterLink, CommonModule, MatTableModule, MatPaginatorModule, MatSortModule, MatButtonModule, MatDividerModule, 
+    MatIconModule ],
   templateUrl: './monitor.component.html',
   styleUrl: './monitor.component.css'
 })

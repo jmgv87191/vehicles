@@ -12,6 +12,11 @@ import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import { AuthService } from '../../auth/services/auth.service';
 import { Router } from '@angular/router';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MonitorComponent } from '../monitor/monitor.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
 
 export interface PeriodicElement {
   name: string;
@@ -45,7 +50,8 @@ const detallesRevision: Detallerevision[] = [
   standalone: true,
   imports: [
     FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule,
-    AsyncPipe, ReactiveFormsModule, CommonModule, MatTableModule, MatTableModule, MatPaginatorModule
+    AsyncPipe, ReactiveFormsModule, CommonModule, MatTableModule, MatTableModule, MatPaginatorModule,
+    MatTabsModule, MonitorComponent, MatIconModule, MatDividerModule, MatButtonModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -60,7 +66,6 @@ export class HomeComponent implements OnInit {
   revision:Subcategoria[] = [];
   displayedColumns: string[] = [ 'Subcategoria', 'Calificacion', 'Observaciones'];
   dataSource = detallesRevision;
-/* ======================================================== */
   selectedVehicleId: string = ''
   vehicleReq!: VehicleRes;
   agregarRevision!: vehicleResp;

@@ -5,7 +5,7 @@
             <img src="/assets/logo.png" style="width: 30px; margin-right: 10px;" alt="">
             <a  class="navbar-brand" href="#">Sapa</a>
         </div>
-        <span style="color: white;" routerLink="/monitor" >Regresar</span>
+        <span style="color: white;" routerLink="/todasRevisiones/{{ idPadre }}" >Regresar</span>
 
 
     </div>
@@ -15,8 +15,9 @@
 
     <h1 class="text-center mt-5" >Revision No. {{ id }} </h1>
 
+    <div class="mat-elevation-z8">
 
-    <table style="margin-top: 30px;"  class="table" >
+        <table style="margin-top: 30px;"  class="table" >
         <thead>
             <tr>
     
@@ -37,5 +38,7 @@
     
     
         </tbody>
-    </table>
+        </table>
+    </div>
+
 </div>

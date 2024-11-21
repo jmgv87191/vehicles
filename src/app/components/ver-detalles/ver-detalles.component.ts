@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { VehicleService } from '../../services/vehicle.service';
 import { RevisionMonitor } from '../../interfaces/vehicle';
@@ -14,6 +14,9 @@ export class VerDetallesComponent implements OnInit {
 
   contDetalles: RevisionMonitor[] = [];
   id: number | undefined;
+  idPadre!: number; 
+
+
 
   constructor(
     private aRoute:ActivatedRoute,
@@ -24,6 +27,7 @@ export class VerDetallesComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.idPadre = Number(localStorage.getItem('idPadre'))
     this.id = Number(this.aRoute.snapshot.paramMap.get('id'))
     this._vehicleService.getDetalles(Number(this.aRoute.snapshot.paramMap.get('id'))).subscribe((data)=>{
       console.log(data)

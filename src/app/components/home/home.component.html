@@ -1,22 +1,31 @@
+
+
 <nav class="navbar navbar-dark bg-dark" >
     <div class="container-fluid cont-header">
-
+        
         <div class="cont_icon" style="display: flex; justify-content: center; align-items: center;" >
             <img src="/assets/logo.png" style="width: 30px; margin-right: 10px;" alt="">
             <a (click)="onLogout()" class="navbar-brand" href="#">Sapa</a>
         </div>
-
+        
         <div class="sesion">
             <span class="text-light "> {{ usuario }}   </span>
             <span (click)="onLogout()" class="text-light" style="cursor: pointer;" >  Logout</span>
         </div>
-
+        
     </div>
 </nav>
+
 
 <div class="encabezado">
     <h1>Revision vehicular</h1>
 </div>
+
+<div class="cont_btones">
+    <a mat-raised-button href="/monitor" target="_blank">Monitor</a>
+</div>
+
+
 
 <form class="" [formGroup]="form" (ngSubmit)="enviar()" >
 
