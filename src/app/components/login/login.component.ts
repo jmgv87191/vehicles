@@ -13,6 +13,7 @@ import { LoginRes } from '../../interfaces/vehicle';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
   errorStatus: boolean = false;
   errorMsj: string = '';

@@ -83,8 +83,6 @@ export class VehicleService {
 
     return this.http.get<TablaMonitor[]>( (environment.endpoint + this.apiUrlVehiculos), options  )
 
-
-
   }
 
   

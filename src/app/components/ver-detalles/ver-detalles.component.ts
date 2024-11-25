@@ -27,8 +27,10 @@ export class VerDetallesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.idPadre = Number(localStorage.getItem('idPadre'))
     this.id = Number(this.aRoute.snapshot.paramMap.get('id'))
+
+    console.log( this.id )
+
     this._vehicleService.getDetalles(Number(this.aRoute.snapshot.paramMap.get('id'))).subscribe((data)=>{
       console.log(data)
       this.contDetalles = data

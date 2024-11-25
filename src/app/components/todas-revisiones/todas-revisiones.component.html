@@ -53,24 +53,24 @@
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
     
-          <!-- Position Column -->
-          <ng-container matColumnDef="norevision">
-            <th mat-header-cell *matHeaderCellDef> No. de revisión </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-          </ng-container>
+        <ng-container matColumnDef="norevision">
+          <th mat-header-cell *matHeaderCellDef> No. de revisión </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
     
-          <!-- Name Column -->
-          <ng-container matColumnDef="fecha">
+        <ng-container matColumnDef="fecha">
             <th mat-header-cell *matHeaderCellDef> Fecha </th>
             <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
-          </ng-container>
+        </ng-container>
     
-          <!-- Weight Column -->
-          <ng-container matColumnDef="detalles">
+        <ng-container matColumnDef="detalles">
             <th mat-header-cell *matHeaderCellDef> Detalles </th>
             <td mat-cell *matCellDef="let element"> 
-                <button class="btn btn-success" routerLink="/detalles/{{ element.id }}"  >Ver mas</button> 
-
+                <button                 
+                    type="button" 
+                    class="btn btn-success" 
+                    routerLink="/detalles/{{ element.id }}"
+                >Ver mas</button>  
             </td>
         </ng-container>
     

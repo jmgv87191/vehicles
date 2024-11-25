@@ -7,13 +7,12 @@ import {MatInputModule} from '@angular/material/input';
 import {FormGroup, FormsModule, ReactiveFormsModule, Validators, FormBuilder} from '@angular/forms';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { VerDetallesComponent } from '../ver-detalles/ver-detalles.component';
 
 @Component({
   selector: 'app-todas-revisiones',
   standalone: true,
   imports: [ RouterLink, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule,MatTableModule,
-    MatPaginatorModule, VerDetallesComponent  ],
+    MatPaginatorModule  ],
   templateUrl: './todas-revisiones.component.html',
   styleUrl: './todas-revisiones.component.css'
 })
@@ -55,7 +54,12 @@ export class TodasRevisionesComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = Number(this.aRoute.snapshot.paramMap.get('id'))
-    localStorage.setItem('idPadre', this.id.toString())
+    if (isNaN(this.id)) {
+      console.error('El ID de la ruta no es válido.');
+      return;
+    }else{
+      console.log (this.id)
+    }
 
     this._vehicleService.getVehicleMonitoreo( this.id ).subscribe((data)=>{
 
@@ -80,6 +84,7 @@ export class TodasRevisionesComponent implements OnInit {
   })
 
   }
+
 
 }
 
