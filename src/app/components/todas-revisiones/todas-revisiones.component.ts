@@ -63,11 +63,13 @@ export class TodasRevisionesComponent implements OnInit {
 
     this._vehicleService.getVehicleMonitoreo( this.id ).subscribe((data)=>{
 
-      this.listaPosts = data
-      console.log(data)
-      this.dataSource = new MatTableDataSource<MonitorVehicle>(data)
+      this.listaPosts = data.sort((a, b) => b.id - a.id);
+
+      console.log(this.listaPosts);
+  
+      this.dataSource = new MatTableDataSource<MonitorVehicle>(this.listaPosts);
       this.dataSource.paginator = this.paginator;
-      this.todasLasRevisiones = data;
+      this.todasLasRevisiones = this.listaPosts;
     })
 
   this._vehicleService.getVehicle(this.id).subscribe((data)=>{

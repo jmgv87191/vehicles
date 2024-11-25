@@ -25,7 +25,7 @@ export class VerDetallesComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
 
     this.id = Number(this.aRoute.snapshot.paramMap.get('id'))
 
