@@ -87,6 +87,8 @@ export interface Detallerevision {
     estado:number;
 }
 
+
+
 /* Enviar Post  al backend*/
 
 

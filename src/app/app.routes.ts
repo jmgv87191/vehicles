@@ -5,11 +5,16 @@ import { MonitorComponent } from './components/monitor/monitor.component';
 import { TodasRevisionesComponent } from './components/todas-revisiones/todas-revisiones.component';
 import { VerDetallesComponent } from './components/ver-detalles/ver-detalles.component';
 import { authGuard } from './guards/auth.guard';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 export const routes: Routes = [
     {
         path:'',
         component:LoginComponent,
+    },
+    {
+        path:'dialog/:id',
+        component:DialogComponent,
     },
     {
         path:'home',
@@ -33,7 +38,6 @@ export const routes: Routes = [
         path:'detalles/:id',
         component:VerDetallesComponent,
         canActivate:[ authGuard ]
-
     },
     {
         path:'**',

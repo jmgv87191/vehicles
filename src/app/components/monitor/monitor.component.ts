@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild, AfterViewInit, ChangeDetectionStrategy,
+  inject
+} from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { TablaMonitor } from '../../interfaces/vehicle';
@@ -10,7 +12,16 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
-
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 
 @Component({
@@ -27,9 +38,19 @@ export class MonitorComponent implements OnInit, AfterViewInit  {
   tablaMonitor: TablaMonitor[] = []
   modelo!:string;
   
+  readonly dialog = inject(MatDialog);
+
+
+  openDialog(): void {
+    this.dialog.open(DialogComponent, {
+      data: {},
+    });
+
+  }
+  
   @Output() marca: EventEmitter<string> = new EventEmitter<string>();
   
-  displayedColumns: string[] = ['noeconomico', 'name', 'revision', 'todas_revisiones'];
+  displayedColumns: string[] = ['noeconomico', 'name', 'revision', 'todas_revisiones','estado'];
   dataSource = new MatTableDataSource<TablaMonitor>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

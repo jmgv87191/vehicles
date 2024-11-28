@@ -1509,18 +1509,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
   enviar(){
 
     if (this.myControl.valid) {
